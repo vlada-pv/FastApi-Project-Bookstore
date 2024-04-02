@@ -1,63 +1,42 @@
-## Полезная информация
+# Book Selling Platform Announcement
 
-В репозиторий добавлен **Makefile** с полезными командами.
-Команды вызываются в консоли вот таким образом:
+The application written in FastApi is a platform for selling and buying books.
+
+## Useful Information 
+
+A **Makefile** with useful commands has been added to the repository. The commands are called in the console in this way:
 
 ```shell
 make linters
 
 make install_reqs
 ```
+## Application Launch
 
-## Изменения по урокам
+Commands are executed in the console: 
 
-**Урок 1**. Реализовали ручки приложения с фейковой базой и сериализаторами.
+1. Copy project. Start work with changing file .env.example to .env
+2. Deploying Postgres DB in a docker container
+```shell
+make up_compose
+```
+3. Installing dependencies for the FastAPI server
+```shell
+make install_reqs
+```
+4. Starting the FastAPI server
+```shell
+uvicorn src.main:app --reload
+```
 
-**Урок 2**. Провели рефакторинг. Разложили сериализаторы и ручки по отдельным пакетам.
-Подключили настоящую БД в Докере и создали модели.
+## Project Structure
 
-**Урок 3**. Провели рефакторинг.
+For convenience and adherence to the principles of clean architecture, the project is divided into the following packages:
 
-Поместили питонячий код в папку src (чтобы тесты запускались корректно и код был отделен от окружения).
+- `configurations` — layer for storing configurations, constants, parameters, and project settings
 
-Написали по одному тесту к ручкам.
+- `models` — layer for storing models (ORM or Data Classes)
 
-Настроили pytest и фикстуры. Пример почти идеальной настройки фикстур для работы с БД.
+- `routers` — layer for setting URLs for different endpoints
 
-Добавили .env файл и модуль settings для хранения переменных окружения и их легкого использования.
-
-Обновили **Makefile**.
-
-## Структура проекта
-
-Для удобства и соблюдения принципов чистой архитектуры проект разделен на следующие пакеты:
-
-- `configurations` — слой для хранения конфигураций, констант, параметров и настроек проекта.
-
-- `models` — слой для хранения моделей (ORM или Data Classes).
-
-- `routers` — слой для настроек урлов для различных эндпоинтов.
-
-- `schemas` — слой содержащий схемы pydantic, отвечает за сериализацию и валидацию.
-
-## Полезные ссылки (в основном на английском)
-
-#### По Fastapi:
-
-1. [Официальная документация](https://fastapi.tiangolo.com/)
-
-2. [Лучшие практики](https://github.com/zhanymkanov/fastapi-best-practices)
-
-3. [Собрание полезных библиотек и пакетов](https://github.com/mjhea0/awesome-fastapi)
-
-4. [Полезная статья по структуре проекта](https://camillovisini.com/coding/abstracting-fastapi-services)
-
-#### По принципам REST архитектуры:
-
-5. [Полезные рекомендации по правильному написанию REST API](<https://github.com/stickfigure/blog/wiki/How-to-(and-how-not-to)-design-REST-APIs>)
-
-#### По SQLAlchemy:
-
-6. [Хороший бесплатный видеокурс на YouTube. На русском языке](https://youtube.com/playlist?list=PLeLN0qH0-mCXARD_K-USF2wHctxzEVp40&si=V7rZGqu1KVJvidLz)
-
-7. [Видеокурс построенный по официальной доке SQLAlchemy. На русском языке](https://youtube.com/playlist?list=PLN0sMOjX-lm5Pz5EeX1rb3yilzMNT6qLM&si=ShZ41fEfSR0s0op4)
+- `schemas` — layer containing pydantic schemes, responsible for serialization and validation
